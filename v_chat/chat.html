@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+body {
+
+    background-size: 200px 150px;
+    background-repeat: no-repeat;
+    padding-top: 50px;
+    background-image:url("vv.gif");
+
+}  </style>
+<body ng-app="myApp">
+	<br />
+	<br />
+	<br />
+	<h2 align="center">Chat Message</h2>
+	<br />
+	<br />
+	<br />
+	<div ng-controller="ChatController" class="container" align="center">
+		<form ng-submit="addMessage()" name="messageForm" align="center">
+			<input type="text" placeholder="Compose a new message..."
+				ng-model="message" /> <br />
+			<br />
+			<div class="info" align="center">
+				<span class="count" ng-bind="max - message.length"
+					ng-class="{danger: message.length > max}">140</span>
+				<button ng-disabled="message.length > max || message.length === 0">Send</button>
+			</div>
+		</form>
+    
+		<p ng-repeat="message in messages | orderBy:'time':true"
+			class="message" align="center">
+			<time>{{message.time | date:'HH:mm'}}</time>
+			<span ng-class="{self: message.self}">{{message.message}}</span>
+			  <span ng-class="{self: username.self}">{{message.username}}</span>
+		</p>
+	</div>
+</body>
+</html>
